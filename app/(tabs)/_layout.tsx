@@ -1,4 +1,4 @@
-import { Stack, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { LayoutDashboard, Settings, Settings2, Wallet } from 'lucide-react-native';
 import React from 'react';
 
@@ -12,7 +12,7 @@ function Layout() {
         name="home"
         options={{
           title: 'home',
-        //   headerShown: false,
+          //   headerShown: false,
           tabBarIcon: ({ color, size }) => <LayoutDashboard color={color} size={size} />,
         }}
       />

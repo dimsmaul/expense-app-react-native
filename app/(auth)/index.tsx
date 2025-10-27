@@ -8,7 +8,6 @@ import { View } from 'react-native';
 import z from 'zod';
 import { Controller } from 'react-hook-form';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent } from '@/components/ui/card';
 import { unauth } from '@/config/unauth';
 import { useAuth } from '@/hooks/auth/useAuth';
 
@@ -40,146 +39,142 @@ export default function Screen() {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="sign-in">
-              <Card>
-                <CardContent className="">
-                  <View className="flex flex-col gap-5">
-                    <View>
-                      <Controller
-                        control={control}
-                        name="email"
-                        render={({ field: { onChange, onBlur, value } }) => (
-                          <>
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                              placeholder="Email"
-                              keyboardType="email-address"
-                              autoCapitalize="none"
-                              autoCorrect={false}
-                              onBlur={onBlur}
-                              onChangeText={onChange}
-                              value={value}
-                            />
-                          </>
-                        )}
-                      />
-                      {errors.email && (
-                        <Text className="text-sm text-red-600">{errors.email.message}</Text>
+              <View className="rounded-md border border-border p-3">
+                <View className="flex flex-col gap-5">
+                  <View>
+                    <Controller
+                      control={control}
+                      name="email"
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <>
+                          <Label htmlFor="email">Email</Label>
+                          <Input
+                            placeholder="Email"
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                          />
+                        </>
                       )}
-                    </View>
-                    <View>
-                      <Controller
-                        control={control}
-                        name="password"
-                        render={({ field: { onChange, onBlur, value } }) => (
-                          <>
-                            <Label htmlFor="password">Password</Label>
-                            <Input
-                              placeholder="Password"
-                              secureTextEntry
-                              autoCapitalize="none"
-                              autoCorrect={false}
-                              onBlur={onBlur}
-                              onChangeText={onChange}
-                              value={value}
-                            />
-                          </>
-                        )}
-                      />
-                      {errors.password && (
-                        <Text className="text-sm text-red-600">{errors.password.message}</Text>
-                      )}
-                    </View>
-                    <View>
-                      <Button onPress={handleSubmit(onSubmit)}>
-                        <Text>Sign In</Text>
-                      </Button>
-                    </View>
+                    />
+                    {errors.email && (
+                      <Text className="text-sm text-red-600">{errors.email.message}</Text>
+                    )}
                   </View>
-                </CardContent>
-              </Card>
+                  <View>
+                    <Controller
+                      control={control}
+                      name="password"
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <>
+                          <Label htmlFor="password">Password</Label>
+                          <Input
+                            placeholder="Password"
+                            secureTextEntry
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                          />
+                        </>
+                      )}
+                    />
+                    {errors.password && (
+                      <Text className="text-sm text-red-600">{errors.password.message}</Text>
+                    )}
+                  </View>
+                  <View>
+                    <Button onPress={handleSubmit(onSubmit)}>
+                      <Text>Sign In</Text>
+                    </Button>
+                  </View>
+                </View>
+              </View>
             </TabsContent>
             <TabsContent value="sign-up">
-              <Card>
-                <CardContent className="">
-                  <View className="flex flex-col gap-5">
-                    <View>
-                      <Controller
-                        control={control}
-                        name="name"
-                        render={({ field: { onChange, onBlur, value } }) => (
-                          <>
-                            <Label htmlFor="name">Name</Label>
-                            <Input
-                              placeholder="Name"
-                              autoCapitalize="none"
-                              autoCorrect={false}
-                              onBlur={onBlur}
-                              onChangeText={onChange}
-                              value={value}
-                            />
-                          </>
-                        )}
-                      />
-                      {(errors as { name: object }).name && (
-                        <Text className="text-sm text-red-600">
-                          {(errors as { name: { message: string } }).name.message}
-                        </Text>
+              <View className="rounded-md border border-border p-3">
+                <View className="flex flex-col gap-5">
+                  <View>
+                    <Controller
+                      control={control}
+                      name="name"
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <>
+                          <Label htmlFor="name">Name</Label>
+                          <Input
+                            placeholder="Name"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                          />
+                        </>
                       )}
-                    </View>
-                    <View>
-                      <Controller
-                        control={control}
-                        name="email"
-                        render={({ field: { onChange, onBlur, value } }) => (
-                          <>
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                              placeholder="Email"
-                              keyboardType="email-address"
-                              autoCapitalize="none"
-                              autoCorrect={false}
-                              onBlur={onBlur}
-                              onChangeText={onChange}
-                              value={value}
-                            />
-                          </>
-                        )}
-                      />
-                      {errors.email && (
-                        <Text className="text-sm text-red-600">{errors.email.message}</Text>
-                      )}
-                    </View>
-                    <View>
-                      <Controller
-                        control={control}
-                        name="password"
-                        render={({ field: { onChange, onBlur, value } }) => (
-                          <>
-                            <Label htmlFor="password">Password</Label>
-                            <Input
-                              placeholder="Password"
-                              secureTextEntry
-                              autoCapitalize="none"
-                              autoCorrect={false}
-                              onBlur={onBlur}
-                              onChangeText={onChange}
-                              value={value}
-                            />
-                          </>
-                        )}
-                      />
-                      {errors.password && (
-                        <Text className="text-sm text-red-600">{errors.password.message}</Text>
-                      )}
-                    </View>
-                    <View>
-                      <Button onPress={handleSubmit(onSubmit)}>
-                        <Text>Sign Up</Text>
-                      </Button>
-                    </View>
+                    />
+                    {(errors as { name: object }).name && (
+                      <Text className="text-sm text-red-600">
+                        {(errors as { name: { message: string } }).name.message}
+                      </Text>
+                    )}
                   </View>
-                </CardContent>
-              </Card>
+                  <View>
+                    <Controller
+                      control={control}
+                      name="email"
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <>
+                          <Label htmlFor="email">Email</Label>
+                          <Input
+                            placeholder="Email"
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                          />
+                        </>
+                      )}
+                    />
+                    {errors.email && (
+                      <Text className="text-sm text-red-600">{errors.email.message}</Text>
+                    )}
+                  </View>
+                  <View>
+                    <Controller
+                      control={control}
+                      name="password"
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <>
+                          <Label htmlFor="password">Password</Label>
+                          <Input
+                            placeholder="Password"
+                            secureTextEntry
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                          />
+                        </>
+                      )}
+                    />
+                    {errors.password && (
+                      <Text className="text-sm text-red-600">{errors.password.message}</Text>
+                    )}
+                  </View>
+                  <View>
+                    <Button onPress={handleSubmit(onSubmit)}>
+                      <Text>Sign Up</Text>
+                    </Button>
+                  </View>
+                </View>
+              </View>
             </TabsContent>
           </Tabs>
         </View>
