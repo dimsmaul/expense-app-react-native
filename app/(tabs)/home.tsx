@@ -113,7 +113,7 @@ function Dashboard() {
               <View className="mr-3 flex h-36 w-60 flex-col justify-between rounded-md border border-border p-3">
                 <Text className="font-semibold">{item.name}</Text>
                 <Preview
-                  label="Saldo"
+                  label="Balance"
                   value={<Text className="text-xl font-semibold">{formatMoney(item.balance)}</Text>}
                 />
               </View>
