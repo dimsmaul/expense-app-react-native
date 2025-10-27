@@ -1,0 +1,107 @@
+{
+  "global": {
+    "search": "Search",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "auth": {
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "email-required": "Email is required",
+    "password-required": "Password is required",
+    "name-required": "Name is required",
+    "invalid-credentials": "Invalid email or password"
+  },
+  "greetings": {
+    "morning": "Good Morning",
+    "afternoon": "Good Afternoon",
+    "evening": "Good Evening"
+  },
+  "home": {
+    "total-balance": "Total Balance",
+    "income": "Income",
+    "expenses": "Expenses",
+    "monthly-expense": "Monthly Expense",
+    "total-transaction": "Total Transactions",
+    "your-wallets": "Your Wallets",
+    "see-all": "See All",
+    "balance": "Balance",
+
+    "transactions": "Transactions",
+    "no-transactions": "No transactions available"
+  },
+
+  "wallets": {
+    "wallets": "Wallets",
+
+    "wallet-action-alert": {
+      "title": "Action",
+      "message": "Choose an action for this wallet",
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+
+    "action": {
+      "add": "Add Wallet",
+      "edit": "Edit Wallet",
+      "name": "Wallet Name",
+      "name-placeholder": "Enter wallet name",
+      "type": "Wallet Type",
+      "save": "Save"
+    },
+
+    "delete": {
+      "title": "Delete Wallet",
+      "message": "Are you sure you want to delete this wallet? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    },
+
+    "detail": {
+      "income": "Income",
+      "expenses": "Expenses",
+      "amount": "Amount",
+      "date": "Date",
+      "note": "Note",
+      "edit": "Edit",
+      "delete": "Delete",
+      "action": "Action"
+    },
+
+    "transaction-action": {
+      "add": "Add Transaction",
+      "edit": "Edit Transaction",
+      "title": "Title",
+      "date": "Date",
+      "amount": "Amount",
+      "note": "Note",
+      "income": "Income",
+      "expense": "Expense",
+      "save": "Save",
+      "alert": {
+        "title": "Confirm Transaction",
+        "message": "Are you sure you want to {{action}} this {{type}} of amount {{amount}}?"
+      }
+    }
+  },
+
+  "settings": {
+    "settings": "Settings",
+    "sign-out": "Sign Out",
+
+    "language": "Language",
+    "english": "English",
+    "indonesian": "Indonesian",
+
+    "sign-out-alert": {
+      "title": "Confirm Sign Out",
+      "message": "Are you sure you want to sign out?",
+      "cancel": "Cancel",
+      "confirm": "Sign Out"
+    }
+  }
+}

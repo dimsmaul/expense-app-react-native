@@ -1,9 +1,11 @@
 import auth from '@/config/auth';
 import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 
 export const useWallet = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState<string>('');
   const list = useInfiniteQuery({
     queryKey: ['wallet-list', search],
@@ -33,17 +35,22 @@ export const useWallet = () => {
   });
 
   const handleDelete = (id: string) => {
-    Alert.alert('Delete Wallet', 'Are you sure you want to delete this wallet?', [
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: () => deleteMutation.mutate(id),
-      },
-    ]);
+    Alert.alert(
+      // 'Delete Wallet', 'Are you sure you want to delete this wallet?'
+      t('wallets.delete.title'),
+      t('wallets.delete.message'),
+      [
+        {
+          text: t('wallets.delete.cancel'),
+          style: 'cancel',
+        },
+        {
+          text: t('wallets.delete.confirm'),
+          style: 'destructive',
+          onPress: () => deleteMutation.mutate(id),
+        },
+      ]
+    );
   };
 
   return {

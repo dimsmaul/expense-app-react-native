@@ -21,9 +21,12 @@ import dayjs from 'dayjs';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Edit, Ellipsis, Plus, Trash } from 'lucide-react-native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { RefreshControl, View } from 'react-native';
 
 function WalletDetail() {
+  const { t } = useTranslation();
+
   // get id params
   const { id } = useLocalSearchParams();
   const { data, list, filter, setFilter, handleEditTransaction, handleDeleteTransaction } =
@@ -47,7 +50,8 @@ function WalletDetail() {
                 </Text>
                 <View className="flex flex-row items-center justify-between">
                   <Preview
-                    label={'Income'}
+                    label={t('wallets.detail.income')}
+                    // label={'Income'}
                     value={
                       <Text className="text-sm font-semibold text-green-500">
                         {formatMoney(data.data?.totalIncome || 0)}
@@ -55,7 +59,8 @@ function WalletDetail() {
                     }
                   />
                   <Preview
-                    label={'Expense'}
+                    // label={'Expense'}
+                    label={t('wallets.detail.expenses')}
                     value={
                       <Text className="text-sm font-semibold text-red-500">
                         {formatMoney(data.data?.totalExpense || 0)}
@@ -89,7 +94,7 @@ function WalletDetail() {
                 <View className="mb-3 rounded-md border border-border p-3">
                   <View className="flex flex-row justify-between">
                     <Preview
-                      label={'Amount'}
+                      label={t('wallets.detail.amount')}
                       value={
                         <Text
                           className={cn(
@@ -102,12 +107,12 @@ function WalletDetail() {
                     />
                     <Preview
                       className="flex items-end"
-                      label={'Date'}
+                      label={t('wallets.detail.date')}
                       value={dayjs(item.date).format('DD MMM YYYY')}
                     />
                   </View>
                   <View className="flex flex-row items-end justify-between">
-                    <Preview label={'Note'} value={item.note} />
+                    <Preview label={t('wallets.detail.note')} value={item.note} />
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button className="flex" size={'icon'} variant={'outline'}>
@@ -116,7 +121,7 @@ function WalletDetail() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent>
                         <DropdownMenuLabel>
-                          <Text>Action</Text>
+                          <Text>{t('wallets.detail.action')}</Text>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
@@ -127,11 +132,11 @@ function WalletDetail() {
                             })
                           }>
                           <Icon as={Edit} />
-                          <Text>Edit</Text>
+                          <Text>{t('wallets.detail.edit')}</Text>
                         </DropdownMenuItem>
                         <DropdownMenuItem onPress={() => handleDeleteTransaction({ tId: item.id })}>
                           <Icon as={Trash} />
-                          <Text>Delete</Text>
+                          <Text>{t('wallets.detail.delete')}</Text>
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>

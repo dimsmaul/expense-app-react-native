@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { Input } from '../ui/input';
 import { Search } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 interface InputSearchDebounceProps {
   defaultValue: string;
@@ -12,6 +13,7 @@ interface InputSearchDebounceProps {
   className?: string;
 }
 const InputSearchDebounce: React.FC<InputSearchDebounceProps> = (props) => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState(props.defaultValue);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const InputSearchDebounce: React.FC<InputSearchDebounceProps> = (props) => {
             setSearch(e.nativeEvent.text);
           }}
           defaultValue={props.defaultValue}
-          placeholder={'Search'}
+          placeholder={t('global.search') }
           className={clsx(
             'bg-primary-100 rounded-md border px-4 py-2 text-foreground focus:outline-none focus:ring-2',
             props.className

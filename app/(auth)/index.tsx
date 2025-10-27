@@ -10,11 +10,13 @@ import { Controller } from 'react-hook-form';
 import { Label } from '@/components/ui/label';
 import { unauth } from '@/config/unauth';
 import { useAuth } from '@/hooks/auth/useAuth';
+import { useTranslation } from 'react-i18next';
 
 export default function Screen() {
   // // const { colorScheme } = useColorScheme();
   // const router = useRouter();
   // const { token, user } = useAuthStore();
+  const { t } = useTranslation();
   const { control, handleSubmit, errors, value, setValue, onSubmit } = useAuth();
 
   return (
@@ -32,10 +34,10 @@ export default function Screen() {
             className="">
             <TabsList className="w-full">
               <TabsTrigger value="sign-in" className="w-1/2">
-                <Text>Sign In</Text>
+                <Text>{t('auth.sign-in')}</Text>
               </TabsTrigger>
               <TabsTrigger value="sign-up" className="w-1/2">
-                <Text>Sign Up</Text>
+                <Text>{t('auth.sign-up')}</Text>
               </TabsTrigger>
             </TabsList>
             <TabsContent value="sign-in">
@@ -47,9 +49,9 @@ export default function Screen() {
                       name="email"
                       render={({ field: { onChange, onBlur, value } }) => (
                         <>
-                          <Label htmlFor="email">Email</Label>
+                          <Label htmlFor="email">{t('auth.email')}</Label>
                           <Input
-                            placeholder="Email"
+                            placeholder={t('auth.email')}
                             keyboardType="email-address"
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -70,9 +72,9 @@ export default function Screen() {
                       name="password"
                       render={({ field: { onChange, onBlur, value } }) => (
                         <>
-                          <Label htmlFor="password">Password</Label>
+                          <Label htmlFor="password">{t('auth.password')}</Label>
                           <Input
-                            placeholder="Password"
+                            placeholder={t('auth.password')}
                             secureTextEntry
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -89,7 +91,7 @@ export default function Screen() {
                   </View>
                   <View>
                     <Button onPress={handleSubmit(onSubmit)}>
-                      <Text>Sign In</Text>
+                      <Text>{t('auth.sign-in')}</Text>
                     </Button>
                   </View>
                 </View>
@@ -104,9 +106,9 @@ export default function Screen() {
                       name="name"
                       render={({ field: { onChange, onBlur, value } }) => (
                         <>
-                          <Label htmlFor="name">Name</Label>
+                          <Label htmlFor="name">{t('auth.name')}</Label>
                           <Input
-                            placeholder="Name"
+                            placeholder={t('auth.name')}
                             autoCapitalize="none"
                             autoCorrect={false}
                             onBlur={onBlur}
@@ -128,9 +130,9 @@ export default function Screen() {
                       name="email"
                       render={({ field: { onChange, onBlur, value } }) => (
                         <>
-                          <Label htmlFor="email">Email</Label>
+                          <Label htmlFor="email">{t('auth.email')}</Label>
                           <Input
-                            placeholder="Email"
+                            placeholder={t('auth.email')}
                             keyboardType="email-address"
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -151,9 +153,9 @@ export default function Screen() {
                       name="password"
                       render={({ field: { onChange, onBlur, value } }) => (
                         <>
-                          <Label htmlFor="password">Password</Label>
+                          <Label htmlFor="password">{t('auth.password')}</Label>
                           <Input
-                            placeholder="Password"
+                            placeholder={t('auth.password')}
                             secureTextEntry
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -170,7 +172,7 @@ export default function Screen() {
                   </View>
                   <View>
                     <Button onPress={handleSubmit(onSubmit)}>
-                      <Text>Sign Up</Text>
+                      <Text>{t('auth.sign-up')}</Text>
                     </Button>
                   </View>
                 </View>

@@ -9,6 +9,9 @@ interface SettingsState {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
+
+  language: Language;
+  setLanguage: (language: Language) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -17,6 +20,9 @@ export const useSettingsStore = create<SettingsState>()(
       theme: 'light',
       setTheme: (theme) => set({ theme }),
       toggleTheme: () => set({ theme: get().theme === 'light' ? 'dark' : 'light' }),
+
+      language: 'en',
+      setLanguage: (language) => set({ language }),
     }),
     {
       name: 'settings-storage',

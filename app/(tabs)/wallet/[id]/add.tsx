@@ -10,9 +10,11 @@ import { money } from '@/utils/format-money';
 import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 function Add() {
+  const { t } = useTranslation();
   const { id, tId } = useLocalSearchParams();
   const { control, handleSubmit, errors, onSubmit, value, setValue } = useCreateTransaction({
     id: id as string,
@@ -20,7 +22,10 @@ function Add() {
   });
   return (
     <>
-      <AppBar title={tId ? 'Edit Transaction' : 'Add Transaction'} leftContent="back" />
+      <AppBar
+        title={tId ? t('wallets.transaction-action.edit') : t('wallets.transaction-action.add')}
+        leftContent="back"
+      />
       <View className="flex-1 gap-8 p-4">
         <View>
           <Tabs
@@ -29,10 +34,10 @@ function Add() {
             className="">
             <TabsList className="w-full">
               <TabsTrigger value="income" className="w-1/2">
-                <Text>Income</Text>
+                <Text>{t('wallets.transaction-action.income')}</Text>
               </TabsTrigger>
               <TabsTrigger value="outcome" className="w-1/2">
-                <Text>Expense</Text>
+                <Text>{t('wallets.transaction-action.expense')}</Text>
               </TabsTrigger>
             </TabsList>
             {/* <TabsContent value="sign-in"></TabsContent> */}
@@ -43,9 +48,9 @@ function Add() {
                   name="title"
                   render={({ field: { onChange, onBlur, value } }) => (
                     <>
-                      <Label htmlFor="title">Title</Label>
+                      <Label htmlFor="title">{t('wallets.transaction-action.title')}</Label>
                       <Input
-                        placeholder="Title"
+                        placeholder={t('wallets.transaction-action.title')}
                         autoCapitalize="none"
                         autoCorrect={false}
                         onBlur={onBlur}
@@ -66,8 +71,12 @@ function Add() {
                   name="date"
                   render={({ field: { onChange, onBlur, value } }) => (
                     <>
-                      <Label htmlFor="date">Date</Label>
-                      <DatePicker placeholder="Date" date={value} onChange={onChange} />
+                      <Label htmlFor="date">{t('wallets.transaction-action.date')}</Label>
+                      <DatePicker
+                        placeholder={t('wallets.transaction-action.date')}
+                        date={value}
+                        onChange={onChange}
+                      />
                     </>
                   )}
                 />
@@ -79,9 +88,9 @@ function Add() {
                   name="note"
                   render={({ field: { onChange, onBlur, value } }) => (
                     <>
-                      <Label htmlFor="note">Note</Label>
+                      <Label htmlFor="note">{t('wallets.transaction-action.note')}</Label>
                       <Input
-                        placeholder="Note"
+                        placeholder={t('wallets.transaction-action.note')}
                         autoCapitalize="none"
                         autoCorrect={false}
                         onBlur={onBlur}
@@ -100,9 +109,9 @@ function Add() {
                   name="amount"
                   render={({ field: { onChange, onBlur, value } }) => (
                     <>
-                      <Label htmlFor="amount">Amount</Label>
+                      <Label htmlFor="amount">{t('wallets.transaction-action.amount')}</Label>
                       <Input
-                        placeholder="Amount"
+                        placeholder={t('wallets.transaction-action.amount')}
                         onBlur={onBlur}
                         onChangeText={(e) => {
                           const numericValue = e.replace(/[^\d]/g, '');
@@ -118,7 +127,7 @@ function Add() {
               </View>
               <View>
                 <Button onPress={handleSubmit(onSubmit)}>
-                  <Text>Save</Text>
+                  <Text>{t('wallets.transaction-action.save')}</Text>
                 </Button>
               </View>
             </View>

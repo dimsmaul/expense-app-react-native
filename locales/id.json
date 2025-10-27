@@ -1,0 +1,99 @@
+{
+  "global": {
+    "search": "Cari",
+    "cancel": "Batal",
+    "confirm": "Konfirmasi"
+  },
+  "auth": {
+    "sign-in": "Masuk",
+    "sign-up": "Daftar",
+    "email": "Email",
+    "password": "Kata Sandi",
+    "name": "Nama",
+    "email-required": "Email wajib diisi",
+    "password-required": "Kata sandi wajib diisi",
+    "name-required": "Nama wajib diisi",
+    "invalid-credentials": "Email atau kata sandi salah"
+  },
+  "greetings": {
+    "morning": "Selamat Pagi",
+    "afternoon": "Selamat Siang",
+    "evening": "Selamat Malam"
+  },
+  "home": {
+    "total-balance": "Total Saldo",
+    "income": "Pemasukan",
+    "expenses": "Pengeluaran",
+    "monthly-expense": "Pengeluaran Bulanan",
+    "total-transaction": "Total Transaksi",
+    "your-wallets": "Dompet Anda",
+    "see-all": "Lihat Semua",
+    "balance": "Saldo",
+    "transactions": "Transaksi",
+    "no-transactions": "Tidak ada transaksi"
+  },
+  "wallets": {
+    "wallets": "Dompet",
+    "wallet-action-alert": {
+      "title": "Aksi",
+      "message": "Pilih aksi untuk dompet ini",
+      "edit": "Edit",
+      "delete": "Hapus",
+      "cancel": "Batal"
+    },
+    "action": {
+      "add": "Tambah Dompet",
+      "edit": "Edit Dompet",
+      "name": "Nama Dompet",
+      "name-placeholder": "Masukkan nama dompet",
+      "type": "Jenis Dompet",
+      "save": "Simpan"
+    },
+    "delete": {
+      "title": "Hapus Dompet",
+      "message": "Apakah Anda yakin ingin menghapus dompet ini? Tindakan ini tidak dapat dibatalkan.",
+      "cancel": "Batal",
+      "confirm": "Hapus"
+    },
+    "detail": {
+      "income": "Pemasukan",
+      "expenses": "Pengeluaran",
+      "amount": "Jumlah",
+      "date": "Tanggal",
+      "note": "Catatan",
+      "edit": "Edit",
+      "delete": "Hapus",
+      "action": "Aksi"
+    },
+    "transaction-action": {
+      "add": "Tambah Transaksi",
+      "edit": "Edit Transaksi",
+      "title": "Judul",
+      "date": "Tanggal",
+      "amount": "Jumlah",
+      "note": "Catatan",
+      "income": "Pemasukan",
+      "expense": "Pengeluaran",
+      "save": "Simpan",
+      "alert": {
+        "title": "Konfirmasi Transaksi",
+        "message": "Apakah Anda yakin ingin {{action}} {{type}} dengan jumlah {{amount}}?"
+      }
+    }
+  },
+  "settings": {
+    "settings": "Pengaturan",
+    "sign-out": "Keluar",
+
+    "language": "Bahasa",
+    "english": "Bahasa Inggris",
+    "indonesian": "Bahasa Indonesia",
+
+    "sign-out-alert": {
+      "title": "Konfirmasi Keluar",
+      "message": "Apakah Anda yakin ingin keluar?",
+      "cancel": "Batal",
+      "confirm": "Keluar"
+    }
+  }
+}

@@ -6,17 +6,28 @@ import { Text } from '@/components/ui/text';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import AppBar from '@/components/appbar';
+import { useTranslation } from 'react-i18next';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useSettingsStore } from '@/store/settings';
 
 export default function SettingsScreen() {
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const logout = useAuthStore((state) => state.clearAuthData);
   const user = useAuthStore((state) => state.user);
+  const { language, setLanguage } = useSettingsStore();
 
   const handleLogout = () => {
-    Alert.alert('Logout', 'Are you sure you want to logout?', [
-      { text: 'Cancel', style: 'cancel' },
+    Alert.alert(t('settings.sign-out-alert.title'), t('settings.sign-out-alert.message'), [
+      { text: t('settings.sign-out-alert.cancel'), style: 'cancel' },
       {
-        text: 'Logout',
+        text: t('settings.sign-out-alert.confirm'),
         style: 'destructive',
         onPress: () => {
           logout();
@@ -26,9 +37,14 @@ export default function SettingsScreen() {
     ]);
   };
 
+  const handleChangeLanguage = (lang: 'en' | 'id') => {
+    setLanguage(lang);
+    i18n.changeLanguage(lang);
+  };
+
   return (
     <>
-      <AppBar title="Settings" />
+      <AppBar title={t('settings.settings')} />
       <View className="flex-1 gap-3 px-3 py-0">
         <View className="rounded-md border border-border p-3">
           <View className="flex-row items-center gap-4">
@@ -46,18 +62,33 @@ export default function SettingsScreen() {
         </View>
 
         {/* TODO: Need to add i18n  */}
-        {/* <View className="rounded-md border border-border p-3">
-          <View className="flex-row items-center gap-4">
-            <View className="flex-1">
-              <Text className="text-lg font-semibold">{user?.name}</Text>
-              <Text className="text-sm">{user?.email}</Text>
-            </View>
+        <Text className="text-base font-semibold">{t('settings.settings')}</Text>
+        <View className="rounded-md border border-border p-3">
+          <View className="flex flex-row items-center justify-between gap-4">
+            {/* <View className="flex-1"></View> */}
+            <Text className="text-base font-semibold">{t('settings.language')}</Text>
+            <Select
+              value={{
+                value: language,
+                label: language === 'en' ? t('settings.english') : t('settings.indonesian'),
+              }}
+              onValueChange={(e) => {
+                handleChangeLanguage(e?.value as 'en' | 'id');
+              }}>
+              <SelectTrigger className="h-10 w-fit">
+                <SelectValue placeholder={t('settings.language')} />
+              </SelectTrigger>
+              <SelectContent className="w-[180px]">
+                <SelectItem value="en" label={t('settings.english')} />
+                <SelectItem value="id" label={t('settings.indonesian')} />
+              </SelectContent>
+            </Select>
           </View>
-        </View> */}
+        </View>
         {/* Logout */}
         <View className="gap-3">
           <Button onPress={handleLogout} variant="destructive">
-            <Text>Sign Out</Text>
+            <Text>{t('settings.sign-out')}</Text>
           </Button>
         </View>
       </View>

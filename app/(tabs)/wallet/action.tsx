@@ -8,9 +8,11 @@ import { Label } from '@/components/ui/label';
 import AppBar from '@/components/appbar';
 import { useCreateWallet } from '@/hooks/wallets/useCreateWallet';
 import { useLocalSearchParams } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 export default function CreateWalletScreen() {
   const { id } = useLocalSearchParams();
+  const { t } = useTranslation();
   const {
     control,
     handleSubmit,
@@ -27,19 +29,19 @@ export default function CreateWalletScreen() {
 
   return (
     <>
-      <AppBar title={id ? 'Edit Wallet' : 'Create Wallet'} leftContent="back" />
+      <AppBar title={id ? t('wallets.action.edit') : t('wallets.action.add')} leftContent="back" />
 
       <View className="flex-1 gap-8 p-4">
         <View className="gap-4">
           {/* Wallet Name */}
           <View>
-            <Label htmlFor="name">Wallet Name</Label>
+            <Label htmlFor="name">{t('wallets.action.name')}</Label>
             <Controller
               control={control}
               name="name"
               render={({ field: { onChange, value, onBlur } }) => (
                 <Input
-                  placeholder="Enter wallet name"
+                  placeholder={t('wallets.action.name-placeholder')}
                   onChangeText={onChange}
                   value={value}
                   onBlur={onBlur}
@@ -51,7 +53,7 @@ export default function CreateWalletScreen() {
 
           {/* Wallet Type */}
           <View>
-            <Text className="text-sm font-semibold">Wallet Type</Text>
+            <Text className="text-sm font-semibold">{t('wallets.action.type')}</Text>
             <View className="mt-2 flex-row flex-wrap gap-2">
               {walletTypes.map((type) => (
                 <Button
@@ -66,7 +68,7 @@ export default function CreateWalletScreen() {
 
           {/* Submit Button */}
           <Button onPress={handleSubmit(onSubmit)} className="mt-6">
-            <Text>Save</Text>
+            <Text>{t('wallets.action.save')}</Text>
           </Button>
         </View>
       </View>

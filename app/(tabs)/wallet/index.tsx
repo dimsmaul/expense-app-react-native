@@ -10,10 +10,10 @@ import InputSearchDebounce from '@/components/search';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { Plus } from 'lucide-react-native';
-import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 export default function WalletsScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { list, search, setSearch, handleDelete } = useWallet();
   const { data, fetchNextPage, isLoading, refetch, isRefetching, isFetching } = list;
@@ -22,7 +22,7 @@ export default function WalletsScreen() {
 
   return (
     <>
-      <AppBar title="Wallets" />
+      <AppBar title={t('wallets.wallets')} />
 
       <View className="flex-1 p-3">
         <List
@@ -48,19 +48,21 @@ export default function WalletsScreen() {
               <TouchableOpacity
                 onLongPress={() =>
                   Alert.alert(
-                    'Action',
-                    'Choose an action for this wallet',
+                    // 'Action',
+                    // 'Choose an action for this wallet',
+                    t('wallets.wallet-action-alert.title'),
+                    t('wallets.wallet-action-alert.message'),
                     [
                       {
-                        text: 'Edit',
+                        text: t('wallets.wallet-action-alert.edit'),
                         onPress: () => router.push(`/wallet/action?id=${item.id}`),
                       },
                       {
-                        text: 'Delete',
+                        text: t('wallets.wallet-action-alert.delete'),
                         style: 'destructive',
                         onPress: () => handleDelete(item.id),
                       },
-                      { text: 'Cancel', style: 'cancel' },
+                      { text: t('wallets.wallet-action-alert.cancel'), style: 'cancel' },
                     ],
                     { cancelable: true }
                   )

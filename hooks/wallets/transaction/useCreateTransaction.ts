@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 import z from 'zod';
 
@@ -15,6 +16,8 @@ export interface CreateTransactionInput {
 }
 
 export const useCreateTransaction = ({ id, tId }: CreateTransactionInput) => {
+  const { t } = useTranslation();
+
   const queryClient = useQueryClient();
   const [value, setValue] = useState<'income' | 'outcome'>('income');
   const {
@@ -68,15 +71,21 @@ export const useCreateTransaction = ({ id, tId }: CreateTransactionInput) => {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     Alert.alert(
-      'Confirm Transaction',
-      `Are you sure you want to ${tId ? 'edit' : 'add'} this ${data.type} of amount ${money(data.amount)}?`,
+      // 'Confirm Transaction',
+      // `Are you sure you want to ${tId ? 'edit' : 'add'} this ${data.type} of amount ${money(data.amount)}?`,
+      t('wallets.transaction-action.alert.title'),
+      t('wallets.transaction-action.alert.message', {
+        action: tId ? t('wallets.transaction-action.edit') : t('wallets.transaction-action.add'),
+        type: data.type === 'income' ? t('wallets.transaction-action.income') : t('wallets.transaction-action.expense'),
+        amount: money(data.amount),
+      }),
       [
         {
-          text: 'Cancel',
+          text: t('global.cancel'),
           style: 'cancel',
         },
         {
-          text: 'Confirm',
+          text: t('global.confirm'),
           onPress: () => mutation.mutate(data),
         },
       ]
