@@ -10,18 +10,24 @@ import { useColorScheme } from 'nativewind';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { useSettingsStore } from '@/store/settings';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const queryClient = new QueryClient();
 
 export { ErrorBoundary } from 'expo-router';
 
 export default function RootLayout() {
+  const { i18n } = useTranslation();
   const { colorScheme, setColorScheme } = useColorScheme();
-  const { theme } = useSettingsStore();
+  const { theme, language } = useSettingsStore();
 
   useEffect(() => {
     setColorScheme(theme);
   }, [theme]);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
 
   return (
     <QueryClientProvider client={queryClient}>

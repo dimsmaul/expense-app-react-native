@@ -126,6 +126,29 @@ function Add() {
                 {errors.note && <Text className="text-sm text-red-600">{errors.note.message}</Text>}
               </View>
               <View>
+                <Controller
+                  control={control}
+                  name="discount"
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <>
+                      <Label htmlFor="discount">Discount</Label>
+                      {/* <Label htmlFor="discount">{t('wallets.transaction-action.amount')}</Label> */}
+                      <Input
+                        placeholder={t('wallets.transaction-action.amount')}
+                        onBlur={onBlur}
+                        onChangeText={(e) => {
+                          const numericValue = e.replace(/[^\d]/g, '');
+                          onChange(numericValue);
+                        }}
+                        keyboardType="numeric"
+                        value={value}
+                      />
+                    </>
+                  )}
+                />
+                {errors.note && <Text className="text-sm text-red-600">{errors.note.message}</Text>}
+              </View>
+              <View>
                 <Button onPress={handleSubmit(onSubmit)}>
                   <Text>{t('wallets.transaction-action.save')}</Text>
                 </Button>

@@ -28,8 +28,8 @@ export const useAuth = () => {
   } = useForm<z.infer<typeof formSchema> | z.infer<typeof formSignUpSchema>>({
     resolver: zodResolver(currentSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'user@gmail.com',
+      password: 'password',
       ...(value === 'sign-up' && { name: '' }),
     },
   });

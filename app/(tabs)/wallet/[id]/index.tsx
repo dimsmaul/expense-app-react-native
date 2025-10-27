@@ -35,6 +35,16 @@ function WalletDetail() {
   const { data: transaction } = list;
   const transactionItems = transaction?.pages.flatMap((page) => page.items) ?? [];
 
+  const calculateDiscount = (amount: number, discount?: number) => {
+    const calculate = (amount / 100) * discount!;
+    return amount - calculate;
+  };
+
+  const getDiscountAmount = (amount: number, discount?: number) => {
+    const calculate = (amount / 100) * discount!;
+    return calculate;
+  };
+
   return (
     <>
       <AppBar title={data.data?.name} leftContent="back" />
@@ -109,6 +119,24 @@ function WalletDetail() {
                       className="flex items-end"
                       label={t('wallets.detail.date')}
                       value={dayjs(item.date).format('DD MMM YYYY')}
+                    />
+                  </View>
+                  <View className="flex flex-row justify-between">
+                    <Preview
+                      label={'Setelah Discount'}
+                      value={
+                        <Text className={''}>
+                          {formatMoney(calculateDiscount(item.amount, 10))}
+                        </Text>
+                      }
+                    />
+                    <Preview
+                      label={'Total Discount'}
+                      value={
+                        <Text className={''}>
+                          {formatMoney(getDiscountAmount(item.amount, 10))}
+                        </Text>
+                      }
                     />
                   </View>
                   <View className="flex flex-row items-end justify-between">

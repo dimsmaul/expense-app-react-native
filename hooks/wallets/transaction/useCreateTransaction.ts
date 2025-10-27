@@ -34,6 +34,7 @@ export const useCreateTransaction = ({ id, tId }: CreateTransactionInput) => {
       date: dayjs().format('YYYY-MM-DD'),
       note: '',
       type: 'income',
+      discount: '',
     },
   });
 
@@ -76,7 +77,10 @@ export const useCreateTransaction = ({ id, tId }: CreateTransactionInput) => {
       t('wallets.transaction-action.alert.title'),
       t('wallets.transaction-action.alert.message', {
         action: tId ? t('wallets.transaction-action.edit') : t('wallets.transaction-action.add'),
-        type: data.type === 'income' ? t('wallets.transaction-action.income') : t('wallets.transaction-action.expense'),
+        type:
+          data.type === 'income'
+            ? t('wallets.transaction-action.income')
+            : t('wallets.transaction-action.expense'),
         amount: money(data.amount),
       }),
       [
@@ -109,6 +113,7 @@ const formSchema = z.object({
   date: z.string().min(1, 'Date is required'),
   note: z.string().optional(),
   type: z.enum(['income', 'outcome'], 'Type must be either income or expense'),
+  discount: z.string().optional(),
 });
 
 const handleSendRequest = async (data: z.infer<typeof formSchema>, tId?: string) => {
