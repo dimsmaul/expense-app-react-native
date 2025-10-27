@@ -38,7 +38,7 @@ export const LampiranDrawer = ({ open, onClose, initialValues, isEdit }: Lampira
   };
 
   useEffect(() => {
-    console.log('initialValues', initialValues);
+    // console.log('initialValues', initialValues);
     if (initialValues && open) {
       setUri(initialValues.uri);
       setNominal(initialValues.nominal);
