@@ -6,6 +6,10 @@ export const useHome = () => {
   const data = useQuery({
     queryKey: ['dashboard'],
     queryFn: request,
+    refetchOnMount: 'always',
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: true,
+    refetchIntervalInBackground: true,
   });
   return { data };
 };

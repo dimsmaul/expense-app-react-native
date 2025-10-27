@@ -2,21 +2,17 @@ import AppBar from '@/components/appbar';
 import BarChart from '@/components/barchart';
 import { List } from '@/components/list';
 import Preview from '@/components/preview';
-import ScrollAwareAppBar from '@/components/scroll-aware-appbar';
-import ThemeToggle from '@/components/theme-toggle';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { useHome } from '@/hooks/home/useHome';
 import { useAuthStore } from '@/store/auth';
 import { formatMoney } from '@/utils/format-money';
 import { toCapitalize } from '@/utils/to-capitalize';
-import { router, Stack } from 'expo-router';
+import { router } from 'expo-router';
 import { ArrowDownRight, ArrowUpRight, DollarSign } from 'lucide-react-native';
 import React from 'react';
-import { ScrollView, TouchableOpacity, View, VirtualizedList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 
 function Dashboard() {
   const { user } = useAuthStore();
