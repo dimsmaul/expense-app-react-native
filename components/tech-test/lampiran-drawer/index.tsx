@@ -67,7 +67,7 @@ export const LampiranDrawer = ({ open, onClose, initialValues, isEdit }: Lampira
       onSwipeComplete={onClose}
       swipeDirection="down"
       style={{ justifyContent: 'flex-end', margin: 0 }}>
-      <View className="h-[70%] rounded-t-2xl bg-white p-4">
+      <View className="h-[70%] rounded-t-2xl p-4 bg-background">
         <Text className="mb-3 text-lg font-bold">Tambah Lampiran Bukti</Text>
 
         <ScrollView showsVerticalScrollIndicator={false}>

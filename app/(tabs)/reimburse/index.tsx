@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, ScrollView, Image } from 'react-native';
 import AppBar from '@/components/appbar';
 import { DatePicker } from '@/components/date-picker';
 import { Input } from '@/components/ui/input';
@@ -10,13 +10,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { LampiranDrawer } from '@/components/tech-test/lampiran-drawer';
-import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
-import Preview from '@/components/preview';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { formatMoney } from '@/utils/format-money';
 import { Button } from '@/components/ui/button';
-import { Edit, Eye, Trash } from 'lucide-react-native';
+import { Edit, Trash } from 'lucide-react-native';
 import { Icon } from '@/components/ui/icon';
-// import { LampiranDrawer } from '@/components/lampiran-drawer'; // import yang baru
 
 const validationSchema = z.object({
   tanggal: z.string().min(1, 'Tanggal wajib diisi'),
@@ -34,7 +38,7 @@ const validationSchema = z.object({
 });
 
 const ReimburseAdd = () => {
-  const { lampiranBukti, setReimburseData } = useReimburseStore();
+  const { lampiranBukti, tanggal, detail, jenisKlaim, setReimburseData } = useReimburseStore();
   const [openDrawer, setOpenDrawer] = useState<{
     open: boolean;
     isEdit?: boolean;
@@ -58,9 +62,9 @@ const ReimburseAdd = () => {
   const { control, handleSubmit } = useForm<z.infer<typeof validationSchema>>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
-      tanggal: '',
-      jenisKlaim: '',
-      detail: '',
+      tanggal: tanggal || '',
+      jenisKlaim: jenisKlaim || '',
+      detail: detail || '',
       lampiranBukti: [],
     },
   });
@@ -129,21 +133,15 @@ const ReimburseAdd = () => {
                     value: value,
                     label: value,
                   }}>
-                  <SelectTrigger>
-                    <Text>{value ? value : 'Pilih jenis klaim...'}</Text>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Jenis Klaim" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="w-[200px]">
                     {['Kesehatan', 'Transportasi', 'Makan', 'Akomodasi'].map((jenis) => (
-                      <SelectItem
-                        key={jenis}
-                        value={jenis}
-                        // onPress={() => onChange(jenis)}
-                        label={jenis}
-                      />
+                      <SelectItem key={jenis} value={jenis} label={jenis} />
                     ))}
                   </SelectContent>
                 </Select>
-                {/* <Input placeholder="Jenis klaim" value={value} onChangeText={onChange} /> */}
               </>
             )}
           />
@@ -184,9 +182,6 @@ const ReimburseAdd = () => {
                     <Text>{item.keterangan}</Text>
                     <Text>{formatMoney(parseInt(item.nominal))}</Text>
                   </View>
-                  {/* <Preview label={'Nominal'} value={formatMoney(parseInt(item.nominal))} />
-                  <Preview label={'Keterangan'} value={item.keterangan} />
-                  <Preview label={'Jumlah file'} value={item.uri.length} /> */}
                 </View>
                 <View className="flex flex-row items-center gap-2">
                   <Button variant={'outline'} size={'icon'} onPress={() => handlePreview(index)}>
@@ -205,11 +200,9 @@ const ReimburseAdd = () => {
             <Text className="mb-2 text-gray-500">Belum ada lampiran</Text>
           )}
 
-          <TouchableOpacity
-            onPress={() => setOpenDrawer({ ...openDrawer, open: true })}
-            className="rounded-md bg-primary p-2">
-            <Text className="text-center text-white">Tambah Lampiran</Text>
-          </TouchableOpacity>
+          <Button onPress={() => setOpenDrawer({ ...openDrawer, open: true })}>
+            <Text className="text-center">Tambah Lampiran</Text>
+          </Button>
         </View>
         <Button onPress={handleSubmit(handleSave)} className="mt-6">
           <Text>Ajukan Reimburse</Text>
